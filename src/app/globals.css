@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-midnight: #18202F;
+  --color-slateblue: #556070;
+  --color-mist: #DCE1E6;
+  --color-warmwhite: #FAF7F2;
+  --color-copper: #B8734F;
+  --color-copperhover: #9D5D3C;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* shake animation for login errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+.animate-shake { animation: shake 0.45s ease-in-out; }
+
+/* fade-up animation for success */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* fade-in for the login card */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.96); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.animate-fade-in { animation: fadeIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* spin for loading spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin 1s linear infinite; }
