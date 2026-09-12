@@ -153,28 +153,19 @@ export default function LoginPage() {
 
         {success ? (
           <div className="cw-success">
-            <div>
-              <div className="cw-success-circle" />
-              <h2>Welcome to City Work!</h2>
-              <p>Redirecting you to your dashboard...</p>
-            </div>
+            <div className="cw-success-circle" />
+            <h2>Welcome to City Work!</h2>
+            <p>Redirecting you to your dashboard...</p>
           </div>
         ) : (
-          <div>
+          <div className="cw-form-body">
             <h1 className="cw-title">
               {mode === 'login' ? 'Welcome Back!' : 'Create Account'}
             </h1>
-            <p className="cw-sub">
-              {mode === 'login'
-                ? 'Sign in to your City Work account'
-                : 'Sign up to get started with City Work'}
-            </p>
 
             <form onSubmit={handleSubmit} noValidate>
               <div className="cw-input-wrap">
-                <label className="cw-label" htmlFor="email">
-                  {mode === 'login' ? 'Email' : 'Email'}
-                </label>
+                <label className="cw-label" htmlFor="email">Email</label>
                 <input
                   ref={emailRef}
                   id="email"
@@ -185,17 +176,17 @@ export default function LoginPage() {
                   autoComplete="email"
                   className={`cw-input ${emailValid === false ? 'cw-input-error' : ''}`}
                 />
-                <i
-                  className={`fa-regular cw-icon ${emailValid !== null ? 'cw-icon-visible' : ''} ${
-                    emailValid ? 'fa-circle-check cw-icon-valid' : 'fa-circle-xmark cw-icon-invalid'
+                <span
+                  className={`cw-icon ${emailValid !== null ? 'cw-icon-visible' : ''} ${
+                    emailValid ? 'cw-icon-valid' : 'cw-icon-invalid'
                   }`}
-                />
+                >
+                  <i className={`fa-regular ${emailValid ? 'fa-circle-check' : 'fa-circle-xmark'}`} />
+                </span>
               </div>
 
               <div className="cw-input-wrap cw-pw-wrap">
-                <label className="cw-label" htmlFor="password">
-                  Password
-                </label>
+                <label className="cw-label" htmlFor="password">Password</label>
                 <input
                   id="password"
                   type={showPw ? 'text' : 'password'}
@@ -205,6 +196,13 @@ export default function LoginPage() {
                   autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
                   className={`cw-input ${pwValid === false ? 'cw-input-error' : ''}`}
                 />
+                <span
+                  className={`cw-icon ${pwValid !== null ? 'cw-icon-visible' : ''} ${
+                    pwValid ? 'cw-icon-valid' : 'cw-icon-invalid'
+                  }`}
+                >
+                  <i className={`fa-regular ${pwValid ? 'fa-circle-check' : 'fa-circle-xmark'}`} />
+                </span>
                 <button
                   type="button"
                   className="cw-eye"
@@ -213,11 +211,6 @@ export default function LoginPage() {
                 >
                   <i className={`fa-regular ${showPw ? 'fa-eye-slash' : 'fa-eye'}`} />
                 </button>
-                <i
-                  className={`fa-regular cw-icon ${pwValid !== null ? 'cw-icon-visible' : ''} ${
-                    pwValid ? 'fa-circle-check cw-icon-valid' : 'fa-circle-xmark cw-icon-invalid'
-                  }`}
-                />
               </div>
 
               {mode === 'login' && (
@@ -255,8 +248,8 @@ export default function LoginPage() {
                   key={errorKey}
                   className={`cw-error ${errorOk ? 'cw-error-ok' : 'cw-error-err'}`}
                 >
-                  <i className={errorOk ? 'fa-regular fa-circle-check' : 'fa-solid fa-circle-exclamation'} />{' '}
-                  {error}
+                  <i className={errorOk ? 'fa-regular fa-circle-check' : 'fa-solid fa-circle-exclamation'} />
+                  <span>{error}</span>
                 </div>
               )}
             </form>
@@ -283,7 +276,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => {
-                  setMode(m => (m === 'login' ? 'signup' : 'login'))
+                  setMode(m => (mode === 'login' ? 'signup' : 'login'))
                   setError('')
                 }}
               >
